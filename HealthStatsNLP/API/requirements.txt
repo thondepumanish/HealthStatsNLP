@@ -1,0 +1,5 @@
+flask
+requests
+BeautifulSoup4
+pandas
+nltk

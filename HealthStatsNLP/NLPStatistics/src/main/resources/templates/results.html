@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #0056b3;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+    
+    <style>
+        /* Additional styles, if needed */
+        .content-para {
+            white-space: pre-line; /* Ensures proper line breaks */
+            margin-bottom: 20px;   /* Adds some space below the paragraph */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Statistics Comparison</h1>
+        <table>
+            <tr>
+            	<th>Statistics Type</th>
+                <th>Number of Sentences</th>
+                <th>Number of Words</th>
+                <th>Average Word Length</th>
+                <th>Number of Unique Words</th>
+                <th>Number of Characters</th>
+                <th>Number of Nouns</th>
+                <th>Number of Adjectives</th>
+                <th>Number of Verbs</th>
+            </tr>
+            <tr th:each="result : ${value.statistics}">
+            	<td th:text="${result.file_type}"></td>
+                <td th:text="${result.num_sentences}"></td>
+                <td th:text="${result.num_words}"></td>
+                <td th:text="${result.average_word_length}"></td>
+                <td th:text="${result.num_unique_words}"></td>
+                <td th:text="${result.num_characters}"></td>
+                <td th:text="${result.num_nouns}"></td>
+                <td th:text="${result.num_adjectives}"></td>
+                <td th:text="${result.num_verbs}"></td>
+            </tr>
+        </table>
+        
+        <h1>User Input</h1>
+        <p class="content-para" th:text="${value.content}"></p>
+        
+        <h1>Additional Information</h1>
+        <table>
+            <tr>
+                <th>Unique Words</th>
+                <th>Nouns</th>
+                <th>Adjectives</th>
+                <th>Verbs</th>
+            </tr>
+            <tr>
+                <td th:text="${value.unique_words}"></td>
+                <td th:text="${value.nouns}"></td>
+                <td th:text="${value.adjectives}"></td>
+                <td th:text="${value.verbs}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

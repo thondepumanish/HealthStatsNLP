@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Compare NLP Statistics</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input, textarea, button {
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056cc;
+        }
+        label {
+            cursor: pointer;
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Compare NLP Statistics</h1>
+        <form action="#" th:action="@{/submit}" method="post" enctype="multipart/form-data">
+            <div>
+                <label>
+                    <input type="radio" name="choice" value="file" id="fileChoice" checked> Upload File
+                </label>
+                <label>
+                    <input type="radio" name="choice" value="text" id="textChoice"> Enter Text
+                </label>
+            </div>
+
+            <div id="fileUploadDiv">
+                <input type="file" name="file">
+            </div>
+
+            <div id="textEntryDiv" style="display: none;">
+                <textarea name="text" placeholder="Enter your text here"></textarea>
+            </div>
+
+            <button type="submit">Compare Statistics</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('input[type=radio][name=choice]').change(function() {
+                $('#fileUploadDiv, #textEntryDiv').hide();
+                if (this.value == 'file') {
+                    $('#fileUploadDiv').fadeIn();
+                } else if (this.value == 'text') {
+                    $('#textEntryDiv').fadeIn();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
